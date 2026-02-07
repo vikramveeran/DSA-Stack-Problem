@@ -6,7 +6,6 @@ public class InfixToPrefix {
           String Answer = infixToPrefix(s);
           System.out.println(Answer);
       }
-
        public static int getPriority(char C) {
         if (C == '^')  // Exponent operator has highest precedence
             return 3;
@@ -16,7 +15,6 @@ public class InfixToPrefix {
             return 1;
         return 0;
     }
-
       static String infixToPostfix(String infix){
           Stack<Character>st = new Stack<>();
           StringBuilder result = new StringBuilder();
@@ -47,8 +45,6 @@ public class InfixToPrefix {
         }
         return result.toString();
       }
-
-
    static String infixToPrefix(String  infix){
        StringBuilder sb = new StringBuilder(infix);
        sb.reverse();
@@ -61,7 +57,6 @@ public class InfixToPrefix {
            }
        }
        String prefix = infixToPostfix(sb.toString());
-
        return new StringBuilder(prefix).reverse().toString();
    }
 }

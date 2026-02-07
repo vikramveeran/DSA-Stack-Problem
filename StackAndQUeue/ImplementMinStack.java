@@ -46,3 +46,5 @@ public class ImplementMinStack {
         System.out.print(s.getMin());
      }
 }
+
+
