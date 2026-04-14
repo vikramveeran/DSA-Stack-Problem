@@ -23,6 +23,10 @@ public class Insert {
              return (2*i)+2;
          }
 
+         int getMin(){
+             return array[0];
+         }
+
          void insert(int x){
              if(size == capacity){
                  System.out.println("binaryHeap is overflowed");
@@ -40,17 +44,16 @@ public class Insert {
          }
 
         
-           
          void heapify(int index){
               int leftindex = left(index);
               int rightindex = right(index);
 
               int smallest =  index;
               if(leftindex < size  && array[leftindex] < array[smallest] ){
-                  leftindex =  smallest;
+                    smallest = leftindex;
               }
               if(rightindex < size && array[rightindex] < array[smallest]){
-                 rightindex = smallest;
+                  smallest = rightindex ;
               }
 
               if(smallest != index ){
@@ -60,7 +63,40 @@ public class Insert {
               heapify(smallest);
               }
         }
-             
+
+        int extractMin(){
+             if(size<=0){
+                return Integer.MAX_VALUE;   
+             }
+             if(size == 1){
+                 size--; 
+                 return array[0];
+             }
+
+             int min = array[0];
+             array[0] = array[size-1];
+             size--;
+             heapify(0);
+             return min;
+        }
+
+        void decreaseKey(int i, int val){
+    array[i] = val;
+
+    while(i != 0 && array[parent(i)] > array[i]){
+        int temp = array[parent(i)];
+        array[parent(i)] = array[i];
+        array[i] = temp;
+
+        i = parent(i);
+    }
+}
+
+void delete(int i){
+    decreaseKey(i, Integer.MIN_VALUE);
+    extractMin();
+}
+        
           void printHeap(){
     for(int i = 0; i < size; i++){
         System.out.print(array[i] + " ");
@@ -83,11 +119,3 @@ public class Insert {
             heap.heapify(0);
   }   
 }
-
-/*
-  git int 
-  git add .
-  git commit -m " "
-  git remote add orgin
-  git puush -M main
- */
